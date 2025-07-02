@@ -30,10 +30,12 @@ export const terminal = {
             const output = execSync(command, { encoding: 'utf8' });
             console.log(chalk.green(`✅ Comando concluído com sucesso.\n`));
             if (output.trim()) {
+                console.log('-------------------');
                 console.log(chalk.gray(output));
             }
             return output;
         } catch (error) {
+            console.error('-------------------');
             console.error(chalk.red(`❌ Erro ao executar comando:`));
             console.error(chalk.red(error.message));
             return `Error: ${error.message}`;
