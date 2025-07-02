@@ -1,0 +1,21 @@
+{
+  "name": "custom-menu-cli",
+  "version": "1.0.0",
+  "description": "Menu interativo baseado em JSON para execução de comandos no terminal",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "menu-cli": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["cli", "menu", "json", "terminal", "deploy"],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1",
+    "inquirer": "^9.2.16"
+  }
+}

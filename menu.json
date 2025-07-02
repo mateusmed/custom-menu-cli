@@ -1,0 +1,33 @@
+{
+  "name": "Deploy Menu",
+  "description": "Menu de navegação para deploys",
+  "options": [
+    {
+      "id": "1",
+      "name": "Projeto A",
+      "type": "navigation",
+      "options": [
+        {
+          "id": "1.1",
+          "name": "Down Service",
+          "type": "action",
+          "command": "echo 'Down A'",
+          "confirm": true
+        },
+        {
+          "id": "1.2",
+          "name": "Up Service",
+          "type": "action",
+          "command": "echo 'Up A'"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Restart All",
+      "type": "custom-action",
+      "idList": ["1.1", "1.2"],
+      "confirm": true
+    }
+  ]
+}
