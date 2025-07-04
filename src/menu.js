@@ -13,7 +13,7 @@ export function buildIdMap(options) {
 
 export async function showMenu(menu) {
     while (true) {
-        const choices = menu.options.map(o => o.name).concat([' Back']);
+        const choices = menu.options.map(o => `[${o.id}] ${o.name}`).concat([' Back']);
         const { choice } = await inquirer.prompt({
             type: 'list',
             name: 'choice',
@@ -23,7 +23,7 @@ export async function showMenu(menu) {
 
         if (choice === ' Back') return;
 
-        const selected = menu.options.find(o => o.name === choice);
+        const selected = menu.options.find(o => `[${o.id}] ${o.name}` === choice);
         if (!selected) continue;
 
         switch (selected.type) {
