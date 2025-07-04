@@ -31,6 +31,8 @@ import { showMenu, buildIdMap } from './src/menu.js';
     });
     console.log(chalk.bold.blueBright(bottomBorder));
     console.log(''); // For spacing
+    console.log(chalk.gray(`Developed by Mateus Medeiros - GitHub: @mateusmed`));
+    console.log(''); // For spacing
 
     await showMenu(data);
 })();

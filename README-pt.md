@@ -19,10 +19,10 @@ npm install -g custom-menu-cli
 
 ## Uso
 
-Para usar o CLI, você pode executar o comando `menu-cli`, passando opcionalmente o caminho para um arquivo JSON. Se nenhum caminho for fornecido, ele procurará um arquivo `menu.json` no diretório atual.
+Para usar o CLI, você pode executar o comando `custom-menu-cli`, passando opcionalmente o caminho para um arquivo JSON. Se nenhum caminho for fornecido, ele procurará um arquivo `menu.json` no diretório atual.
 
 ```bash
-menu-cli [caminho/para/seu/menu.json]
+custom-menu-cli [caminho/para/seu/menu.json]
 ```
 
 ## Estrutura do JSON
@@ -81,3 +81,9 @@ O arquivo JSON que define o menu tem a seguinte estrutura:
 ## Licença
 
 Este projeto está licenciado sob a Licença MIT.
+
+## Autor
+
+- **Mateus Medeiros**
+  - GitHub: [@mateusmed](https://github.com/mateusmed)
+  - LinkedIn: [Mateus Medeiros](https://www.linkedin.com/in/mateus-med/)

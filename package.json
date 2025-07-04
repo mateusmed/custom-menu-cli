@@ -1,17 +1,17 @@
 {
   "name": "custom-menu-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Menu interativo baseado em JSON para execução de comandos no terminal",
   "type": "module",
-  "main": "node index.js",
+  "main": "index.js",
   "bin": {
-    "custom-menu-cli": "node index.js"
+    "custom-menu-cli": "index.js"
   },
   "scripts": {
     "start": "node index.js"
   },
   "keywords": ["cli", "menu", "json", "terminal", "deploy"],
-  "author": "Seu Nome",
+  "author": "Mateus Medeiros <https://github.com/mateusmed>",
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",

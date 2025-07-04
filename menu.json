@@ -1,6 +1,6 @@
 {
-  "name": "Deploy Menu",
-  "description": "Menu de navegação para deploys",
+  "name": "custom-menu-cli",
+  "description": "JSON-based terminal menu",
   "options": [
     {
       "id": "1",
