@@ -26,17 +26,18 @@ export const terminal = {
 
     async execCommandSync(command) {
         try {
-            console.log(chalk.yellow(`\n⚙️  Executando comando:\n${chalk.gray(command)}\n`));
+            console.log(chalk.yellow(`\n Execute command:\n\t${chalk.bgBlackBright.red(command)}\n`));
             const output = execSync(command, { encoding: 'utf8' });
             console.log(chalk.green(`✅ Comando concluído com sucesso.\n`));
             if (output.trim()) {
-                console.log('-------------------');
-                console.log(chalk.gray(output));
+                console.log('--------[output command]-------');
+                console.log(chalk.greenBright(output));
+                console.log('-------------------------------');
             }
             return output;
         } catch (error) {
             console.error('-------------------');
-            console.error(chalk.red(`❌ Erro ao executar comando:`));
+            console.error(chalk.red(`Erro ao executar comando:`));
             console.error(chalk.red(error.message));
             return `Error: ${error.message}`;
         }
@@ -44,7 +45,7 @@ export const terminal = {
 
     async execList(list) {
         let output = '';
-        console.log(chalk.cyan(`\n🔁 Executando lista de comandos (${list.length}):\n`));
+        console.log(chalk.cyan(`\n Executando lista de comandos (${list.length}):\n`));
         for (let command of list) {
             console.log(chalk.blue(`→ ${command}`));
             const result = await this.execCommandSync(command);

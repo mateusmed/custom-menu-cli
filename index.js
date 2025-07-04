@@ -18,8 +18,9 @@ function buildIdMap(options) {
 buildIdMap(data.options);
 
 async function showMenu(menu) {
+
     while (true) {
-        const choices = menu.options.map(o => o.name).concat([' Voltar']);
+        const choices = menu.options.map(o => o.name).concat([' Back']);
         const { choice } = await inquirer.prompt({
             type: 'list',
             name: 'choice',
@@ -27,7 +28,7 @@ async function showMenu(menu) {
             choices
         });
 
-        if (choice === ' Voltar') return;
+        if (choice === ' Back') return;
 
         const selected = menu.options.find(o => o.name === choice);
         if (!selected) continue;
@@ -41,7 +42,7 @@ async function showMenu(menu) {
                 ? (await inquirer.prompt({
                     type: 'confirm',
                     name: 'ok',
-                    message: chalk.yellow(`Executar "${selected.command}"?`),
+                    message: chalk.yellow(`Excute command: "${selected.command}"?`),
                     default: false
                 })).ok
                 : true;
@@ -54,7 +55,7 @@ async function showMenu(menu) {
                 ? (await inquirer.prompt({
                     type: 'confirm',
                     name: 'ok',
-                    message: chalk.yellow(`Executar ações compostas ${selected.idList.join(', ')}?`),
+                    message: chalk.yellow(`Execute command list ${selected.idList.join(', ')}?`),
                     default: false
                 })).ok
                 : true;
@@ -63,7 +64,7 @@ async function showMenu(menu) {
                 for (const id of selected.idList) {
                     const cmd = flatMap[id];
                     if (cmd?.command) {
-                        console.log(chalk.blue(`\n Executando ${cmd.name}`));
+                        console.log(chalk.blue(`\n Execute command: ${cmd.name}`));
                         await terminal.execCommandSync(cmd.command);
                     }
                 }
