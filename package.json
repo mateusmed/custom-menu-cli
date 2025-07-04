@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Menu interativo baseado em JSON para execução de comandos no terminal",
   "type": "module",
-  "main": "old/custom-menu-cli.js",
+  "main": "node index.js",
   "bin": {
-    "custom-menu-cli": "old/custom-menu-cli.js"
+    "custom-menu-cli": "node index.js"
   },
   "scripts": {
-    "start": "node old/custom-menu-cli.js"
+    "start": "node index.js"
   },
   "keywords": ["cli", "menu", "json", "terminal", "deploy"],
   "author": "Seu Nome",

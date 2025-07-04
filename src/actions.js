@@ -8,7 +8,7 @@ async function confirmExecution(message) {
 }
 
 export async function handleAction(selected) {
-    const proceed = selected.confirm ? await confirmExecution(chalk.yellow(`Execute command: "${selected.command}"?`)) : true;
+    const proceed = selected.confirm ? await confirmExecution(chalk.yellow(`Executing command: [id: ${selected.id} name: ${selected.name} ]`)) : true;
     if (proceed) {
         await terminal.execCommandSync(selected.command);
     }
@@ -20,7 +20,7 @@ export async function handleCustomAction(selected, flatMap) {
         for (const id of selected.idList) {
             const cmd = flatMap[id];
             if (cmd?.command) {
-                console.log(chalk.blue(`Executing command: ${cmd.name}`));
+                console.log(chalk.blue(`Executing command: [id: ${cmd.id} name: ${cmd.name} ]`));
                 await terminal.execCommandSync(cmd.command);
             }
         }

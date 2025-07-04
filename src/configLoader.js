@@ -28,16 +28,10 @@ export function loadMenuConfig() {
             console.error(error);
             process.exit(1);
         }
-        return;
-    }
-
-    if (path) {
+    } else if (path) {
         console.log(chalk.red(`File not found: ${path}`));
         process.exit(1);
-        return;
-    }
-
-    if (fs.existsSync('./menu.json')) {
+    } else if (fs.existsSync('./menu.json')) {
         try {
             data = JSON.parse(fs.readFileSync('./menu.json', 'utf-8'));
         } catch (error) {
@@ -45,11 +39,10 @@ export function loadMenuConfig() {
             console.error(error);
             process.exit(1);
         }
-        return ;
+    } else {
+        console.log(chalk.yellow("No 'menu.json' found. Loading example menu."));
+        data = defaultMenu;
     }
-
-    console.log(chalk.yellow("No 'menu.json' found. Loading example menu."));
-    data = defaultMenu;
 
     return data;
 }

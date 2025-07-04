@@ -9,12 +9,14 @@ import { showMenu, buildIdMap } from './src/menu.js';
 
     console.clear();
     console.log(chalk.bold.blueBright(`
-  ____ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
- ||C |||u |||s |||t |||o |||m |||  |||M |||e |||n ||
- ||__|||__|||__|||__|||__|||__|||__|||__|||__|||__|| 
- |/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\| 
+  
+        ╔═══════════════════════════════╗
+        ║       custom-menu-cli         ║
+        ║    JSON-based Terminal Menu   ║
+        ╚═══════════════════════════════╝
 
-`));
+    `));
+
     console.log(chalk.bold.blueBright(`📦 ${data.name}`));
     console.log(chalk.gray(data.description));
     
