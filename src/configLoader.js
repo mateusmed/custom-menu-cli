@@ -15,21 +15,26 @@ const defaultMenu = {
     ]
 };
 
-export function loadMenuConfig() {
-    const args = process.argv.slice(2);
-    const path = args[0];
+export function loadMenuConfig(menuPath = null) {
     let data;
+    let finalPath = menuPath;
 
-    if (path && fs.existsSync(path)) {
+    // If menuPath is not provided, check command line arguments
+    if (!finalPath) {
+        const args = process.argv.slice(2);
+        finalPath = args[0];
+    }
+
+    if (finalPath && fs.existsSync(finalPath)) {
         try {
-            data = JSON.parse(fs.readFileSync(path, 'utf-8'));
+            data = JSON.parse(fs.readFileSync(finalPath, 'utf-8'));
         } catch (error) {
-            console.log(chalk.red(`Error parsing JSON file: ${path}`));
+            console.log(chalk.red(`Error parsing JSON file: ${finalPath}`));
             console.error(error);
             process.exit(1);
         }
-    } else if (path) {
-        console.log(chalk.red(`File not found: ${path}`));
+    } else if (finalPath) {
+        console.log(chalk.red(`File not found: ${finalPath}`));
         process.exit(1);
     } else if (fs.existsSync('./menu.json')) {
         try {

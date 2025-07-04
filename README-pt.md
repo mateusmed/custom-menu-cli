@@ -19,10 +19,31 @@ npm install -g custom-menu-cli
 
 ## Uso
 
+Esta ferramenta pode ser utilizada de duas formas: como uma ferramenta de Linha de Comando (CLI) ou programaticamente, importando sua função principal.
+
+### Como Ferramenta CLI
+
 Para usar o CLI, você pode executar o comando `custom-menu-cli`, passando opcionalmente o caminho para um arquivo JSON. Se nenhum caminho for fornecido, ele procurará um arquivo `menu.json` no diretório atual.
 
 ```bash
 custom-menu-cli [caminho/para/seu/menu.json]
+```
+
+### Uso Programático
+
+Você pode importar a função `runCli` do pacote e executá-la dentro de suas próprias aplicações Node.js. Isso permite integrar a funcionalidade do menu customizado em scripts ou sistemas maiores.
+
+```javascript
+import { runCli } from 'custom-menu-cli';
+
+async function iniciarMeuMenuCustomizado() {
+    console.log("Iniciando menu customizado...");
+    // Opcionalmente, passe o caminho para o seu arquivo menu.json
+    await runCli('./caminho/para/seu/menu.json');
+    console.log("Menu customizado finalizado.");
+}
+
+iniciarMeuMenuCustomizado();
 ```
 
 ## Estrutura do JSON
