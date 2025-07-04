@@ -1,0 +1,77 @@
+# Custom Menu CLI
+
+Esta é uma ferramenta de interface de linha de comando (CLI) que cria um menu interativo com base em um arquivo JSON. Ele foi projetado para simplificar a execução de comandos frequentes em um terminal.
+
+## Funcionalidades
+
+- Menu interativo no terminal.
+- Estrutura do menu definida por um arquivo JSON.
+- Fácil de configurar e usar.
+- Suporte para execução de comandos com confirmação.
+
+## Instalação
+
+Para instalar esta ferramenta globalmente, execute o seguinte comando:
+
+```bash
+npm install -g custom-menu-cli
+```
+
+## Uso
+
+Para usar o CLI, você pode executar o comando `menu-cli`, passando opcionalmente o caminho para um arquivo JSON. Se nenhum caminho for fornecido, ele procurará um arquivo `menu.json` no diretório atual.
+
+```bash
+menu-cli [caminho/para/seu/menu.json]
+```
+
+## Estrutura do JSON
+
+O arquivo JSON que define o menu tem a seguinte estrutura:
+
+```json
+{
+  "name": "Meu Menu Personalizado",
+  "description": "Uma descrição do meu menu.",
+  "options": [
+    {
+      "id": "opt1",
+      "name": "Opção 1",
+      "type": "action",
+      "command": "echo 'Executando a Opção 1'",
+      "confirm": true
+    },
+    {
+      "id": "opt2",
+      "name": "Submenu",
+      "type": "navigation",
+      "options": [
+        {
+          "id": "sub_opt1",
+          "name": "Sub-opção 1",
+          "type": "action",
+          "command": "echo 'Executando a Sub-opção 1'",
+          "confirm": false
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Campos
+
+- `name`: O nome do menu.
+- `description`: Uma breve descrição do menu.
+- `options`: Um array de opções do menu.
+  - `id`: Um identificador único para a opção.
+  - `name`: O texto que será exibido para a opção.
+  - `type`: O tipo de opção. Pode ser `action` (executa um comando), `navigation` (abre um submenu) ou `custom-action` (executa uma lista de comandos de outras ações).
+  - `command`: O comando a ser executado (se o tipo for `action`).
+  - `idList`: Uma lista de ids de outras ações a serem executados (se o tipo for `custom-action`).
+  - `confirm`: Um booleano que indica se uma confirmação deve ser solicitada antes de executar o comando.
+  - `options`: Um array de sub-opções (se o tipo for `navigation`).
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT.

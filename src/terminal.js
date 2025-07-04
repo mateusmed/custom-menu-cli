@@ -5,11 +5,9 @@ import { access } from 'fs/promises';
 import { execSync } from 'child_process';
 import chalk from 'chalk';
 
-// Resolver o caminho corretamente
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Carregar variáveis de ambiente do arquivo .env na pasta 'node'
 config({ path: join(__dirname, '../.env') });
 
 export const terminal = {
@@ -28,7 +26,7 @@ export const terminal = {
         try {
             console.log(chalk.yellow(`\n Execute command:\n\t${chalk.bgBlackBright.red(command)}\n`));
             const output = execSync(command, { encoding: 'utf8' });
-            console.log(chalk.green(`✅ Comando concluído com sucesso.\n`));
+            console.log(chalk.green(`✅ Command executed with success.\n`));
             if (output.trim()) {
                 console.log('--------[output command]-------');
                 console.log(chalk.greenBright(output));
@@ -37,7 +35,7 @@ export const terminal = {
             return output;
         } catch (error) {
             console.error('-------------------');
-            console.error(chalk.red(`Erro ao executar comando:`));
+            console.error(chalk.red(`Error on execute command:`));
             console.error(chalk.red(error.message));
             return `Error: ${error.message}`;
         }
@@ -45,7 +43,7 @@ export const terminal = {
 
     async execList(list) {
         let output = '';
-        console.log(chalk.cyan(`\n Executando lista de comandos (${list.length}):\n`));
+        console.log(chalk.cyan(`\n Running list of command: (${list.length}):\n`));
         for (let command of list) {
             console.log(chalk.blue(`→ ${command}`));
             const result = await this.execCommandSync(command);
