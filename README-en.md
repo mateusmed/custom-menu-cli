@@ -31,29 +31,35 @@ The JSON file that defines the menu has the following structure:
 
 ```json
 {
-  "name": "My Custom Menu",
-  "description": "A description of my menu.",
+  "name": "Deploy Menu",
+  "description": "Menu de navegação para deploys",
   "options": [
     {
-      "id": "opt1",
-      "name": "Option 1",
-      "type": "action",
-      "command": "echo 'Executing Option 1'",
-      "confirm": true
-    },
-    {
-      "id": "opt2",
-      "name": "Submenu",
+      "id": "1",
+      "name": "Projeto A",
       "type": "navigation",
       "options": [
         {
-          "id": "sub_opt1",
-          "name": "Sub-option 1",
+          "id": "1.1",
+          "name": "Down Service",
           "type": "action",
-          "command": "echo 'Executing Sub-option 1'",
-          "confirm": false
+          "command": "echo 'Down A'",
+          "confirm": true
+        },
+        {
+          "id": "1.2",
+          "name": "Up Service",
+          "type": "action",
+          "command": "echo 'Up A'"
         }
       ]
+    },
+    {
+      "id": "2",
+      "name": "Restart All",
+      "type": "custom-action",
+      "idList": ["1.1", "1.2"],
+      "confirm": true
     }
   ]
 }
