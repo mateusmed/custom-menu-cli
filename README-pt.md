@@ -94,8 +94,8 @@ O arquivo JSON que define o menu tem a seguinte estrutura:
 
 ```json
 {
-  "name": "Deploy Menu",
-  "description": "Menu de navegação para deploys",
+  "name": "custom-menu-cli",
+  "description": "JSON-based terminal menu",
   "options": [
     {
       "id": "1",
@@ -114,6 +114,13 @@ O arquivo JSON que define o menu tem a seguinte estrutura:
           "name": "Up Service",
           "type": "action",
           "command": "echo 'Up A'"
+        },
+        {
+          "id": "1.3",
+          "name": "Restart Project A (from inside)",
+          "type": "custom-action",
+          "idList": ["1.1", "1.2"],
+          "confirm": true
         }
       ]
     },
@@ -122,6 +129,13 @@ O arquivo JSON que define o menu tem a seguinte estrutura:
       "name": "Restart All",
       "type": "custom-action",
       "idList": ["1.1", "1.2"],
+      "confirm": true
+    },
+    {
+      "id": "3",
+      "name": "Restart Project A (Nested)",
+      "type": "custom-action",
+      "idList": ["1.3"],
       "confirm": true
     }
   ]
