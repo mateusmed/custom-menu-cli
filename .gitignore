@@ -5,8 +5,8 @@
 #/node/.env
 /node/node_modules
 
-/microservices/*
-!/microservices/.gitkeep
+/dist/*
+!/dist/.gitkeep
 
 # dependencies
 /node_modules

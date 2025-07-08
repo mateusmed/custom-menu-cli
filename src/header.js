@@ -1,6 +1,6 @@
-import chalk from 'chalk';
+const chalk = require('chalk');
 
-export function displayHeader(data) {
+function displayHeader(data) {
     const name = data.name || 'Custom Menu';
     const description = data.description || 'A CLI Menu';
     const lines = [name, description];
@@ -23,3 +23,5 @@ export function displayHeader(data) {
     console.log(chalk.gray(`Developed by Mateus Medeiros - GitHub: @mateusmed`));
     console.log('');
 }
+
+module.exports = { displayHeader };

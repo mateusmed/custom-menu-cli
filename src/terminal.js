@@ -1,16 +1,12 @@
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { config } from 'dotenv';
-import { access } from 'fs/promises';
-import { execSync } from 'child_process';
-import chalk from 'chalk';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const { join } = require('path');
+const { config } = require('dotenv');
+const { access } = require('fs/promises');
+const { execSync } = require('child_process');
+const chalk = require('chalk');
 
 config({ path: join(__dirname, '../.env') });
 
-export const terminal = {
+const terminal = {
 
     async directoryExists(path) {
         try {
@@ -53,3 +49,5 @@ export const terminal = {
     }
 
 }
+
+module.exports = { terminal };

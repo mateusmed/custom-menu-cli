@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import { loadMenuConfig } from './src/configLoader.js';
-import { showMenu, buildIdMap } from './src/menu.js';
-import { displayHeader } from './src/header.js';
-import { fileURLToPath } from 'url';
+const { loadMenuConfig } = require('./src/configLoader.js');
+const { showMenu, buildIdMap } = require('./src/menu.js');
+const { displayHeader } = require('./src/header.js');
 
-export async function runCli(menuPath = null) {
+async function runCli(menuPath = null) {
     const data = loadMenuConfig(menuPath);
     if (data.options) {
         buildIdMap(data.options);
@@ -18,7 +17,8 @@ export async function runCli(menuPath = null) {
     await showMenu(data);
 }
 
-
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (require.main === module) {
     runCli();
 }
+
+module.exports = { runCli };

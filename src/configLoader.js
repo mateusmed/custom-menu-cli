@@ -1,5 +1,5 @@
-import fs from 'fs';
-import chalk from 'chalk';
+const fs = require('fs');
+const chalk = require('chalk');
 
 const defaultMenu = {
     "name": "Example Menu",
@@ -15,7 +15,7 @@ const defaultMenu = {
     ]
 };
 
-export function loadMenuConfig(menuPath = null) {
+function loadMenuConfig(menuPath = null) {
     let data;
     let finalPath = menuPath;
 
@@ -51,3 +51,5 @@ export function loadMenuConfig(menuPath = null) {
 
     return data;
 }
+
+module.exports = { loadMenuConfig };

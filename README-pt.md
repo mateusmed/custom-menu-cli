@@ -19,22 +19,55 @@ npm install -g custom-menu-cli
 
 ## Uso
 
-Esta ferramenta pode ser utilizada de duas formas: como uma ferramenta de Linha de Comando (CLI) ou programaticamente, importando sua função principal.
+Existem três maneiras principais de utilizar esta ferramenta:
 
-### Como Ferramenta CLI
+### 1. Como Executável (Build de Release)
 
-Para usar o CLI, você pode executar o comando `custom-menu-cli`, passando opcionalmente o caminho para um arquivo JSON. Se nenhum caminho for fornecido, ele procurará um arquivo `menu.json` no diretório atual.
+Você pode gerar executáveis para Linux, macOS e Windows. Após o build, os arquivos estarão na pasta `dist/`.
+
+Primeiro, gere os arquivos com o comando:
+
+```bash
+npm run build
+```
+
+Depois, execute o arquivo correspondente ao seu sistema operacional, passando opcionalmente o caminho para um arquivo de menu. Se nenhum caminho for fornecido, ele procurará por um `menu.json` no diretório atual.
+
+```bash
+# No Linux/macOS
+./dist/custom-menu-linux [caminho/para/seu/menu.json]
+
+# No Windows
+.\dist\custom-menu-win.exe [caminho\para\seu\menu.json]
+```
+
+### 2. Globalmente via NPM
+
+Instale o pacote globalmente para usar o comando `custom-menu-cli` em qualquer lugar do seu sistema.
+
+```bash
+npm install -g custom-menu-cli
+```
+
+Depois de instalado, execute o comando:
 
 ```bash
 custom-menu-cli [caminho/para/seu/menu.json]
 ```
 
-### Uso Programático
+### 3. Programaticamente via `require`
 
-Você pode importar a função `runCli` do pacote e executá-la dentro de suas próprias aplicações Node.js. Isso permite integrar a funcionalidade do menu customizado em scripts ou sistemas maiores.
+Você pode importar a função `runCli` em seus próprios projetos Node.js para integrar a funcionalidade do menu.
+
+Primeiro, adicione o pacote como uma dependência do seu projeto:
+```bash
+npm install custom-menu-cli
+```
+
+Depois, use-o em seu código:
 
 ```javascript
-import { runCli } from 'custom-menu-cli';
+const { runCli } = require('custom-menu-cli');
 
 async function iniciarMeuMenuCustomizado() {
     console.log("Iniciando menu customizado...");

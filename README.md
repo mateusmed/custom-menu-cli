@@ -21,22 +21,55 @@ npm install -g custom-menu-cli
 
 ## Usage
 
-This tool can be used in two ways: as a Command-Line Interface (CLI) tool or programmatically by importing its main function.
+There are three main ways to use this tool:
 
-### As a CLI Tool
+### 1. As an Executable (Release Build)
 
-To use the CLI, you can run the `custom-menu-cli` command, optionally passing the path to a JSON file. If no path is provided, it will look for a `menu.json` file in the current directory.
+You can generate executables for Linux, macOS, and Windows. After the build, the files will be in the `dist/` folder.
+
+First, generate the files with the command:
+
+```bash
+npm run build
+```
+
+Then, run the file corresponding to your operating system, optionally passing the path to a menu file. If no path is provided, it will look for a `menu.json` in the current directory.
+
+```bash
+# On Linux/macOS
+./dist/custom-menu-linux [path/to/your/menu.json]
+
+# On Windows
+.\dist\custom-menu-win.exe [path\to\your\menu.json]
+```
+
+### 2. Globally via NPM
+
+Install the package globally to use the `custom-menu-cli` command anywhere on your system.
+
+```bash
+npm install -g custom-menu-cli
+```
+
+Once installed, run the command:
 
 ```bash
 custom-menu-cli [path/to/your/menu.json]
 ```
 
-### Programmatic Usage
+### 3. Programmatically via `require`
 
-You can import the `runCli` function from the package and execute it within your own Node.js applications. This allows you to integrate the custom menu functionality into larger scripts or systems.
+You can import the `runCli` function into your own Node.js projects to integrate the menu functionality.
+
+First, add the package as a dependency to your project:
+```bash
+npm install custom-menu-cli
+```
+
+Then, use it in your code:
 
 ```javascript
-import { runCli } from 'custom-menu-cli';
+const { runCli } = require('custom-menu-cli');
 
 async function startMyCustomMenu() {
     console.log("Starting custom menu...");

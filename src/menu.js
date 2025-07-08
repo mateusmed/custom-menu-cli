@@ -1,17 +1,17 @@
-import inquirer from 'inquirer';
-import chalk from 'chalk';
-import { handleAction, handleCustomAction, handleNavigation } from './actions.js';
+const inquirer = require('inquirer');
+const chalk = require('chalk');
+const { handleAction, handleCustomAction, handleNavigation } = require('./actions.js');
 
-export const flatMap = {};
+const flatMap = {};
 
-export function buildIdMap(options) {
+function buildIdMap(options) {
     for (const opt of options) {
         flatMap[opt.id] = opt;
         if (opt.options) buildIdMap(opt.options);
     }
 }
 
-export async function showMenu(menu) {
+async function showMenu(menu) {
     while (true) {
         const choices = menu.options.map(o => `[${o.id}] ${o.name}`).concat([' Back']);
         const { choice } = await inquirer.prompt({
@@ -41,3 +41,5 @@ export async function showMenu(menu) {
         }
     }
 }
+
+module.exports = { flatMap, buildIdMap, showMenu };
