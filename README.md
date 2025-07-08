@@ -2,6 +2,9 @@
 
 [Português (Brasil)](./README-pt.md)
 
+![Menu Example 1](./docs/example1.png)
+![Menu Example 2](./docs/example2.png)
+
 This is a command-line interface (CLI) tool that creates an interactive menu based on a JSON file. It's designed to simplify the execution of frequent commands in a terminal.
 
 ## Features
@@ -10,6 +13,11 @@ This is a command-line interface (CLI) tool that creates an interactive menu bas
 - Menu structure defined by a JSON file.
 - Easy to configure and use.
 - Support for command execution with confirmation.
+
+## Releases
+
+You can find all released versions and pre-compiled standalone executables on the [GitHub Releases page](https://github.com/mateusmed/custom-menu-cli/releases).
+
 
 ## Installation
 

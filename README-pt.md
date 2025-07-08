@@ -1,5 +1,8 @@
 # Custom Menu CLI
 
+![Exemplo de Menu 1](./docs/example1.png)
+![Exemplo de Menu 2](./docs/example2.png)
+
 Esta é uma ferramenta de interface de linha de comando (CLI) que cria um menu interativo com base em um arquivo JSON. Ele foi projetado para simplificar a execução de comandos frequentes em um terminal.
 
 ## Funcionalidades
@@ -8,6 +11,12 @@ Esta é uma ferramenta de interface de linha de comando (CLI) que cria um menu i
 - Estrutura do menu definida por um arquivo JSON.
 - Fácil de configurar e usar.
 - Suporte para execução de comandos com confirmação.
+
+
+## Lançamentos
+
+Você pode encontrar todas as versões lançadas e os executáveis standalone pré-compilados na página de [Releases do GitHub](https://github.com/mateusmed/custom-menu-cli/releases).
+
 
 ## Instalação
 
