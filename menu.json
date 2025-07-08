@@ -19,6 +19,13 @@
           "name": "Up Service",
           "type": "action",
           "command": "echo 'Up A'"
+        },
+        {
+          "id": "1.3",
+          "name": "Restart Project A (from inside)",
+          "type": "custom-action",
+          "idList": ["1.1", "1.2"],
+          "confirm": true
         }
       ]
     },
@@ -27,6 +34,13 @@
       "name": "Restart All",
       "type": "custom-action",
       "idList": ["1.1", "1.2"],
+      "confirm": true
+    },
+    {
+      "id": "3",
+      "name": "Restart Project A (Nested)",
+      "type": "custom-action",
+      "idList": ["1.3"],
       "confirm": true
     }
   ]

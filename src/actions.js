@@ -14,14 +14,25 @@ async function handleAction(selected) {
     }
 }
 
-async function handleCustomAction(selected, flatMap) {
+async function handleCustomAction(selected, flatMap, depth = 0) {
+    if (depth >= 3) {
+        console.log(chalk.red(`Maximum recursion depth (3) exceeded for custom action: ${selected.id}`));
+        return;
+    }
     const proceed = selected.confirm ? await confirmExecution(chalk.yellow(`Execute command list ${selected.idList.join(', ')}?`)) : true;
     if (proceed) {
         for (const id of selected.idList) {
             const cmd = flatMap[id];
-            if (cmd?.command) {
-                console.log(chalk.blue(`Executing command: [id: ${cmd.id} name: ${cmd.name} ]`));
-                await terminal.execCommandSync(cmd.command);
+            if (cmd) {
+                if (cmd.type === 'action' && cmd.command) {
+                    console.log(chalk.blue(`Executing command: [id: ${cmd.id} name: ${cmd.name} ]`));
+                    await terminal.execCommandSync(cmd.command);
+                } else if (cmd.type === 'custom-action') {
+                    console.log(chalk.blue(`Executing custom action: [id: ${cmd.id} name: ${cmd.name} ]`));
+                    await handleCustomAction(cmd, flatMap, depth + 1);
+                } else {
+                    console.log(chalk.red(`Unknown or unexecutable type for id: ${cmd.id}`));
+                }
             }
         }
     }
