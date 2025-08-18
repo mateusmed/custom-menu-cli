@@ -5,7 +5,7 @@ const { showMenu, buildIdMap } = require('./src/menu.js');
 const { displayHeader } = require('./src/header.js');
 
 async function runCli(menuPath = null) {
-    const data = loadMenuConfig(menuPath);
+    const data = await loadMenuConfig(menuPath);
     if (data.options) {
         buildIdMap(data.options);
     }
@@ -18,7 +18,9 @@ async function runCli(menuPath = null) {
 }
 
 if (require.main === module) {
-    runCli();
+    (async () => {
+        await runCli();
+    })();
 }
 
 module.exports = { runCli };

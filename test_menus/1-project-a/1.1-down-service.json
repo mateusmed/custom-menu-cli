@@ -1,0 +1,7 @@
+{
+  "id": "1.1",
+  "name": "Down Service",
+  "type": "action",
+  "command": "echo 'Down A'",
+  "confirm": true
+}

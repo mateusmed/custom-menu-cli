@@ -1,0 +1,7 @@
+{
+  "id": "2",
+  "name": "Restart All",
+  "type": "custom-action",
+  "idList": ["1.1", "1.2"],
+  "confirm": true
+}

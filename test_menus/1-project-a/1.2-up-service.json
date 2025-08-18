@@ -1,0 +1,6 @@
+{
+  "id": "1.2",
+  "name": "Up Service",
+  "type": "action",
+  "command": "echo 'Up A'"
+}

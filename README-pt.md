@@ -88,6 +88,33 @@ async function iniciarMeuMenuCustomizado() {
 iniciarMeuMenuCustomizado();
 ```
 
+### 4. Geração de Menu Baseada em Pastas
+
+O `custom-menu-cli` agora suporta a geração de menus a partir de uma pasta estruturada contendo arquivos JSON. Isso permite uma melhor organização e modularidade das suas definições de menu.
+
+**Estrutura de Exemplo (`test_menus/`):**
+```
+test_menus/
+├── 1-project-a/
+│   ├── 1.1-down-service.json
+│   ├── 1.2-up-service.json
+│   └── 1.3-restart-project-a.json
+├── 2-restart-all.json
+└── 3-restart-project-a-nested.json
+```
+
+Cada arquivo `.json` dentro da pasta (e suas subpastas) representa uma opção de menu. Os diretórios são automaticamente convertidos em opções do tipo `navigation`.
+
+**Como usar:**
+
+Basta passar o caminho para a sua pasta de menu como argumento:
+
+```bash
+custom-menu-cli ./caminho/para/sua/pasta_de_menu
+```
+
+O CLI irá automaticamente descobrir e combinar todos os arquivos JSON válidos em uma única estrutura de menu.
+
 ## Estrutura do JSON
 
 O arquivo JSON que define o menu tem a seguinte estrutura:

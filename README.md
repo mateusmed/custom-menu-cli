@@ -89,6 +89,33 @@ async function startMyCustomMenu() {
 startMyCustomMenu();
 ```
 
+### 4. Folder-based Menu Generation
+
+The `custom-menu-cli` now supports generating menus from a structured folder containing JSON files. This allows for better organization and modularity of your menu definitions.
+
+**Example Structure (`test_menus/`):**
+```
+test_menus/
+├── 1-project-a/
+│   ├── 1.1-down-service.json
+│   ├── 1.2-up-service.json
+│   └── 1.3-restart-project-a.json
+├── 2-restart-all.json
+└── 3-restart-project-a-nested.json
+```
+
+Each `.json` file within the folder (and its subfolders) represents a menu option. Directories are automatically converted into `navigation` type options.
+
+**How to use:**
+
+Simply pass the path to your menu folder as an argument:
+
+```bash
+custom-menu-cli ./path/to/your/menu_folder
+```
+
+The CLI will automatically discover and combine all valid JSON files into a single menu structure.
+
 ## JSON Structure
 
 The JSON file that defines the menu has the following structure:
