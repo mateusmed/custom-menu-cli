@@ -1,5 +1,7 @@
 {
+  "id": "0",
   "name": "custom-menu-cli",
+  "type": "navigation",
   "description": "JSON-based terminal menu",
   "options": [
     {
