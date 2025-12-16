@@ -5,13 +5,24 @@ const { showMenu, buildIdMap, flatMap } = require('./src/menu.js');
 const { displayHeader } = require('./src/header.js');
 const { parseArgs } = require('./src/args.js');
 const { executeSequence } = require('./src/actionSequencer.js');
+const { validateAllDependencies } = require('./src/dependencyValidator.js');
+
+
+const { validateMenu } = require('./src/menuValidator.js');
 
 async function runCli() {
     const { menuPath, customActions } = parseArgs();
     const data = await loadMenuConfig(menuPath);
+
+    // 1. Validate the overall menu structure
+    validateMenu(data);
+
     if (data.options) {
         buildIdMap(data.options);
     }
+
+    // 2. Validate all dependencies
+    validateAllDependencies(flatMap);
 
     if (customActions && customActions.length > 0) {
         await executeSequence(customActions, flatMap);
