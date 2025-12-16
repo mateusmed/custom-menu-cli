@@ -6,9 +6,17 @@
   "bin": "index.js",
   "scripts": {
     "start": "node index.js",
+    "test": "jest",
     "build": "pkg . --targets node16-linux-x64,node16-win-x64,node16-macos-x64 --output dist/custom-menu-v$npm_package_version"
   },
-  "keywords": ["cli", "menu", "json", "terminal", "deploy", "custom"],
+  "keywords": [
+    "cli",
+    "menu",
+    "json",
+    "terminal",
+    "deploy",
+    "custom"
+  ],
   "author": "Mateus Medeiros <https://github.com/mateusmed>",
   "license": "MIT",
   "dependencies": {
@@ -17,6 +25,10 @@
     "inquirer": "^8.2.4"
   },
   "devDependencies": {
+    "jest": "^30.2.0",
     "pkg": "^5.8.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
