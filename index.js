@@ -5,7 +5,7 @@ const { showMenu, buildIdMap, flatMap } = require('./src/menu.js');
 const { displayHeader } = require('./src/header.js');
 const { parseArgs } = require('./src/args.js');
 const { executeSequence } = require('./src/actionSequencer.js');
-const { validateAllDependencies } = require('./src/dependencyValidator.js');
+const { validateRecursionDepth } = require('./src/dependencyValidator.js');
 
 
 const { validateMenu } = require('./src/menuValidator.js');
@@ -21,8 +21,7 @@ async function runCli() {
         buildIdMap(data.options);
     }
 
-    // 2. Validate all dependencies
-    validateAllDependencies(flatMap);
+    validateRecursionDepth(flatMap);
 
     if (customActions && customActions.length > 0) {
         await executeSequence(customActions, flatMap);
