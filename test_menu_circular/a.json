@@ -1,0 +1,6 @@
+{
+    "id": "a",
+    "name": "Action A",
+    "type": "custom-action",
+    "idList": ["b"]
+}

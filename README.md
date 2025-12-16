@@ -13,6 +13,7 @@ This is a command-line interface (CLI) tool that creates an interactive menu bas
 - Menu structure defined by a JSON file.
 - Easy to configure and use.
 - Support for command execution with confirmation.
+- Execute action sequences directly from the command line.
 
 ## Releases
 
@@ -115,6 +116,33 @@ custom-menu-cli ./path/to/your/menu_folder
 ```
 
 The CLI will automatically discover and combine all valid JSON files into a single menu structure.
+
+### 5. Command-Line Action Execution
+
+You can execute a sequence of actions directly from the command line without entering the interactive menu. This is useful for scripting and automation.
+
+**Usage:**
+
+```bash
+node index.js menu=<path-to-menu> custom-action=<action_id_1>,<action_id_2>,...
+```
+
+- `menu=<path-to-menu>`: The path to your menu file or directory.
+- `custom-action=<action_ids>`: A comma-separated list of action IDs to execute in sequence.
+
+**Examples:**
+
+```bash
+# Execute a single action
+node index.js menu=menu.json custom-action=1.1
+
+# Execute a sequence of actions
+node index.js menu=./test_menus/ custom-action=1.1,1.2
+```
+
+**Circular Dependency Check:**
+
+The tool includes a circular dependency check to prevent infinite loops. If a `custom-action` depends on another action that in turn depends on the first action, the tool will detect it and refuse to execute, displaying an error message.
 
 ## JSON Structure
 

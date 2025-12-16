@@ -11,7 +11,7 @@ Esta é uma ferramenta de interface de linha de comando (CLI) que cria um menu i
 - Estrutura do menu definida por um arquivo JSON.
 - Fácil de configurar e usar.
 - Suporte para execução de comandos com confirmação.
-
+- Execute sequências de ações diretamente da linha de comando.
 
 ## Lançamentos
 
@@ -114,6 +114,33 @@ custom-menu-cli ./caminho/para/sua/pasta_de_menu
 ```
 
 O CLI irá automaticamente descobrir e combinar todos os arquivos JSON válidos em uma única estrutura de menu.
+
+### 5. Execução de Ações pela Linha de Comando
+
+Você pode executar uma sequência de ações diretamente da linha de comando, sem entrar no menu interativo. Isso é útil para scripts e automação.
+
+**Uso:**
+
+```bash
+node index.js menu=<caminho-para-o-menu> custom-action=<id_da_acao_1>,<id_da_acao_2>,...
+```
+
+- `menu=<caminho-para-o-menu>`: O caminho para o seu arquivo ou diretório de menu.
+- `custom-action=<ids_das_acoes>`: Uma lista de IDs de ações, separados por vírgula, para executar em sequência.
+
+**Exemplos:**
+
+```bash
+# Executar uma única ação
+node index.js menu=menu.json custom-action=1.1
+
+# Executar uma sequência de ações
+node index.js menu=./test_menus/ custom-action=1.1,1.2
+```
+
+**Verificação de Dependência Circular:**
+
+A ferramenta inclui uma verificação de dependência circular para evitar loops infinitos. Se uma `custom-action` depende de outra ação que, por sua vez, depende da primeira, a ferramenta detectará o ciclo e se recusará a executar, exibindo uma mensagem de erro.
 
 ## Estrutura do JSON
 

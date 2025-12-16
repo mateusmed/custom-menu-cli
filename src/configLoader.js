@@ -52,44 +52,43 @@ async function buildMenuOptions(dir) {
 
 async function loadMenuConfig(menuPath = null) {
     let data;
-    let finalPath = menuPath;
 
-    // If menuPath is not provided, check command line arguments
-    if (!finalPath) {
-        const args = process.argv.slice(2);
-        finalPath = args[0];
-    }
-
-    if (finalPath) {
+    if (menuPath) {
         try {
-            const stats = await fs.stat(finalPath);
+            const stats = await fs.stat(menuPath);
             if (stats.isDirectory()) {
                 data = {
                     name: "Dynamic Menu",
-                    description: `Menu generated from folder: ${finalPath}`,
-                    options: await buildMenuOptions(finalPath)
+                    description: `Menu generated from folder: ${menuPath}`,
+                    options: await buildMenuOptions(menuPath)
                 };
             } else { // It's a file
-                data = JSON.parse(await fs.readFile(finalPath, 'utf-8'));
-                validateMenuOption(data, finalPath); // Validar menu de arquivo único também
+                data = JSON.parse(await fs.readFile(menuPath, 'utf-8'));
+                validateMenuOption(data, menuPath); // Validar menu de arquivo único também
             }
         } catch (error) {
-            console.log(chalk.red(`Erro ao processar o caminho: ${finalPath}`));
-            console.error(error);
-            process.exit(1);
-        }
-    } else if (fs.existsSync('./menu.json')) { // This part remains sync for now
-        try {
-            data = JSON.parse(fs.readFileSync('./menu.json', 'utf-8'));
-            validateMenuOption(data, './menu.json'); // Validar menu.json padrão
-        } catch (error) {
-            console.log(chalk.red(`Erro ao analisar o arquivo JSON: ./menu.json`));
+            console.log(chalk.red(`Erro ao processar o caminho: ${menuPath}`));
             console.error(error);
             process.exit(1);
         }
     } else {
-        console.log(chalk.yellow("Nenhum 'menu.json' encontrado. Carregando menu de exemplo."));
-        data = defaultMenu;
+        const defaultMenuPath = './menu.json';
+        // fs.existsSync is sync, for a quick check it is acceptable.
+        // For full async, this would need a rewrite with fs.promises.access.
+        if (require('fs').existsSync(defaultMenuPath)) {
+            try {
+                const fileContent = await fs.readFile(defaultMenuPath, 'utf-8');
+                data = JSON.parse(fileContent);
+                validateMenuOption(data, defaultMenuPath);
+            } catch (error) {
+                console.log(chalk.red(`Erro ao analisar o arquivo JSON: ${defaultMenuPath}`));
+                console.error(error);
+                process.exit(1);
+            }
+        } else {
+            console.log(chalk.yellow("Nenhum 'menu.json' encontrado. Carregando menu de exemplo."));
+            data = defaultMenu;
+        }
     }
 
     return data;
