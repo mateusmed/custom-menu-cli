@@ -1,6 +1,6 @@
 const chalk = require('chalk');
-const { terminal } = require('./terminal.js');
 const inquirer = require('inquirer');
+const { terminal } = require('./terminal.js');
 
 async function confirmExecution(message) {
     const { ok } = await inquirer.prompt([{ type: 'confirm', name: 'ok', message, default: false }]);
@@ -49,4 +49,44 @@ async function executeAction(action, flatMap, isConfirmationEnabled = true) {
     }
 }
 
-module.exports = { executeAction };
+/**
+ * Handles a single action selected in interactive mode.
+ * @param {object} selected - The selected action object.
+ * @param {object} flatMap - The map of all available actions.
+ */
+async function handleAction(selected, flatMap) {
+    // For single actions selected in interactive mode, confirmation is enabled.
+    await executeAction(selected, flatMap, true);
+}
+
+/**
+ * Handles a custom action selected in interactive mode.
+ * @param {object} selected - The selected custom action object.
+ * @param {object} flatMap - The map of all available actions.
+ */
+async function handleCustomAction(selected, flatMap) {
+    // For custom actions selected in interactive mode, confirmation is enabled.
+    await executeAction(selected, flatMap, true);
+}
+
+/**
+ * Executes a sequence of actions triggered from the command line.
+ * @param {string[]} actionIds - An array of action IDs to execute.
+ * @param {object} flatMap - The map of all available actions.
+ */
+async function executeSequence(actionIds, flatMap) {
+    console.log(chalk.blue(`Executing sequence from command line: ${actionIds.join(', ')}`));
+
+    for (const id of actionIds) {
+        const action = flatMap[id];
+        if (action) {
+            // Call the unified executor with confirmations disabled
+            await executeAction(action, flatMap, false);
+        } else {
+            console.error(chalk.red(`Error: Action with id '${id}' not found.`));
+        }
+    }
+}
+
+
+module.exports = { handleAction, handleCustomAction, executeSequence };

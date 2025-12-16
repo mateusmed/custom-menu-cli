@@ -2,7 +2,6 @@ const chalk = require('chalk');
 
 
 function validateRecursionDepth(flatMap, maxDepth = 3) {
-
     const graph = new Map();
     const allActions = Object.values(flatMap);
 
@@ -12,23 +11,30 @@ function validateRecursionDepth(flatMap, maxDepth = 3) {
         }
     }
 
-    function checkDepth(actionId, currentDepth) {
+    function checkDepth(actionId, currentDepth, path) {
         if (currentDepth > maxDepth) {
-            return true; // Exceeded depth
+            console.error(chalk.red(`Error: Maximum recursion depth of ${maxDepth} exceeded by action '${path[0]}'. Path: ${path.join(' -> ')} -> ${actionId}`));
+            process.exit(1);
         }
+
+        if (path.includes(actionId)) {
+            // This is a circular dependency. If it reached here, it didn't exceed maxDepth on previous checks
+            // So, for now, we just acknowledge it and don't exit.
+            // If the *cycle itself* is considered a depth violation (e.g., a->b->a, depth 3 for second 'a'),
+            // the check above (currentDepth > maxDepth) should catch it if the cycle is long enough.
+            return;
+        }
+
+        path.push(actionId);
 
         const dependencies = graph.get(actionId) || [];
         for (const depId of dependencies) {
-            if (checkDepth(depId, currentDepth + 1)) {
-                console.error(chalk.red(`Error: Maximum recursion depth of ${maxDepth} exceeded by action '${actionId}'.`));
-                process.exit(1);
-            }
+            checkDepth(depId, currentDepth + 1, [...path]); // Pass a copy of the path
         }
-        return false;
     }
 
     for (const actionId of graph.keys()) {
-        checkDepth(actionId, 1);
+        checkDepth(actionId, 1, []);
     }
 }
 

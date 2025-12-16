@@ -4,7 +4,6 @@ const { loadMenuConfig } = require('./src/configLoader.js');
 const { showMenu, buildIdMap, flatMap } = require('./src/menu.js');
 const { displayHeader } = require('./src/header.js');
 const { parseArgs } = require('./src/args.js');
-const { executeSequence } = require('./src/actionSequencer.js');
 const { validateRecursionDepth } = require('./src/dependencyValidator.js');
 
 

@@ -12,6 +12,8 @@ Esta é uma ferramenta de interface de linha de comando (CLI) que cria um menu i
 - Fácil de configurar e usar.
 - Suporte para execução de comandos com confirmação.
 - Execute sequências de ações diretamente da linha de comando.
+- Estrutura interna aprimorada pela unificação da lógica de execução de ações.
+- Validação de dependência aprimorada com verificações de profundidade de recursão para evitar aninhamento excessivo.
 
 ## Lançamentos
 
@@ -138,9 +140,9 @@ node index.js menu=menu.json custom-action=1.1
 node index.js menu=./test_menus/ custom-action=1.1,1.2
 ```
 
-**Verificação de Dependência Circular:**
+**Validação de Profundidade de Recursão:**
 
-A ferramenta inclui uma verificação de dependência circular para evitar loops infinitos. Se uma `custom-action` depende de outra ação que, por sua vez, depende da primeira, a ferramenta detectará o ciclo e se recusará a executar, exibindo uma mensagem de erro.
+A ferramenta agora inclui validação de profundidade de recursão para evitar ações customizadas aninhadas excessivamente profundas e potenciais loops infinitos. Se uma sequência de ações customizadas exceder uma profundidade máxima de recursão predefinida, a ferramenta detectará e se recusará a executar, exibindo uma mensagem de erro. Isso ajuda a manter a estabilidade e a previsibilidade em estruturas de menu complexas.
 
 ## Estrutura do JSON
 

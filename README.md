@@ -14,6 +14,8 @@ This is a command-line interface (CLI) tool that creates an interactive menu bas
 - Easy to configure and use.
 - Support for command execution with confirmation.
 - Execute action sequences directly from the command line.
+- Improved internal structure by unifying action execution logic.
+- Enhanced dependency validation with recursion depth checks to prevent excessive nesting.
 
 ## Releases
 
@@ -140,9 +142,9 @@ node index.js menu=menu.json custom-action=1.1
 node index.js menu=./test_menus/ custom-action=1.1,1.2
 ```
 
-**Circular Dependency Check:**
+**Recursion Depth Validation:**
 
-The tool includes a circular dependency check to prevent infinite loops. If a `custom-action` depends on another action that in turn depends on the first action, the tool will detect it and refuse to execute, displaying an error message.
+The tool now includes recursion depth validation to prevent excessively deep nested custom actions and potential infinite loops. If a sequence of custom actions exceeds a predefined maximum recursion depth, the tool will detect it and refuse to execute, displaying an error message. This helps maintain stability and predictability in complex menu structures.
 
 ## JSON Structure
 

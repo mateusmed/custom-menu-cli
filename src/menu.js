@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
-const { handleAction, handleCustomAction, handleNavigation } = require('./actions.js');
+const { handleAction, handleCustomAction, executeSequence } = require('./actionRunner.js');
 
 const flatMap = {};
 
