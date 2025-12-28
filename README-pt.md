@@ -1,5 +1,7 @@
 # Custom Menu CLI
 
+<img src="./docs/icon.png" alt="Custom Menu CLI Icon" width="600px" height="400px"/>
+
 ![Exemplo de Menu 1](./docs/example1.png)
 ![Exemplo de Menu 2](./docs/example2.png)
 

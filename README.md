@@ -1,5 +1,7 @@
 # Custom Menu CLI
 
+<img src="./docs/icon.png" alt="Custom Menu CLI Icon" width="600px" height="400px"/>
+
 [Português (Brasil)](./README-pt.md)
 
 ![Menu Example 1](./docs/example1.png)
